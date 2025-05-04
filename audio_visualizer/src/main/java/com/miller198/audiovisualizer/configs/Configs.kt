@@ -6,6 +6,7 @@ import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.miller198.audiovisualizer.defaultPreProcessFftData
+import com.miller198.audiovisualizer.defaultPreProcessWaveData
 
 /**
  * Interface for configuring the audio visualizer.
@@ -78,7 +79,7 @@ sealed interface VisualizerConfig {
     /**
      * Waveform-based visualizer configuration.
      */
-    open class WaveCaptureConfig(
+    data class WaveCaptureConfig(
         override val captureSize: Int,
         override val processWaveData: (Visualizer, ByteArray, Int) -> List<Float>
     ) : VisualizerConfig {
@@ -86,14 +87,17 @@ sealed interface VisualizerConfig {
         override val useFftCapture: Boolean = false
         override val processFftData: ((Visualizer, ByteArray, Int) -> List<Float>)? = null
 
-        /** Default waveform configuration. */
-        data object Default : WaveCaptureConfig(
-            captureSize = 1024,
-            processWaveData = { _, _, _ ->
-                // TODO: Implement default waveform preprocessing logic
-                emptyList()
-            }
-        )
+        companion object {
+            const val DEFAULT_CAPTURE_SIZE = 512
+
+            /** Default waveform configuration. */
+            val Default = WaveCaptureConfig(
+                captureSize = DEFAULT_CAPTURE_SIZE,
+                processWaveData = { _, byteArray, _ ->
+                    defaultPreProcessWaveData(byteArray)
+                }
+            )
+        }
     }
 }
 
@@ -108,7 +112,7 @@ sealed interface GradientConfig {
     /** Default gradient config (enabled). */
     data object Default : GradientConfig {
         override val useGradient: Boolean = true
-        override val duration: Int = 2500
+        override val duration: Int = DEFAULT_GRADIENT_DURATION
         override val color: Color = White
     }
 
@@ -125,6 +129,10 @@ sealed interface GradientConfig {
         override val useGradient: Boolean = false
         override val duration: Int = 0
         override val color: Color = Color.Transparent
+    }
+
+    companion object {
+        const val DEFAULT_GRADIENT_DURATION = 2500
     }
 }
 

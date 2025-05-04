@@ -31,11 +31,8 @@ internal fun CircleAlbumCover(
         CircleVisualizer(
             audioSessionId = audioSessionId,
             soundEffects = SoundEffects.BAR,
-            visualizerConfig = VisualizerConfig.FftCaptureConfig.Default,
-            gradientConfig = GradientConfig.Enabled(
-                color = audioEffectColor.mixedWhite(),
-                duration = 2500
-            ),
+            visualizerConfig = VisualizerConfig.WaveCaptureConfig.Default,
+            gradientConfig = GradientConfig.Default,
             color = audioEffectColor,
             modifier = modifier.align(Alignment.Center)
         )
@@ -53,10 +50,3 @@ internal fun CircleAlbumCover(
         )
     }
 }
-
-private fun Color.mixedWhite(): Color = Color(
-    red = (Color.White.red + this.red) / 2,
-    green = (Color.White.green + this.green) / 2,
-    blue = (Color.White.blue + this.blue) / 2,
-    alpha = 0.9f
-)
