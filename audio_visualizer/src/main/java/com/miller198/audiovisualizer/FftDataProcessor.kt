@@ -183,6 +183,12 @@ class FftDataProcessor(rawFftBytes: ByteArray) {
         return this
     }
 
+
+    /**
+     * Returns the final processed FFT data.
+     *
+     * @return A list of processed Float values.
+     */
     fun result(): List<Float> = processedData
 }
 
