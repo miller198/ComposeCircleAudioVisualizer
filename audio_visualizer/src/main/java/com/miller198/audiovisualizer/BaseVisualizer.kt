@@ -54,7 +54,7 @@ class BaseVisualizer {
     /**
      * Returns whether the visualizer is currently running.
      */
-    fun isRunning(): Boolean = visualizer != null
+    fun isRunning(): Boolean = visualizer?.enabled == true
 
     /**
      * Stops and releases the [Visualizer]
