@@ -20,7 +20,7 @@ object DrawSoundEffectConfigs {
     const val GRADIENT_RADIUS_RATIO = 0.8f
 
     /** Divisor used to determine the maximum height of the visual wave effect. */
-    const val EFFECT_HEIGHT_DIVISOR = 5f
+    private const val EFFECT_HEIGHT_DIVISOR = 5f
 
     /** Current gradient configuration. Default is [GradientConfig.Default] */
     internal var gradientConfig: GradientConfig = GradientConfig.Default

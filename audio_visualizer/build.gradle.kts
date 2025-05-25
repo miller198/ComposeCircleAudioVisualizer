@@ -9,8 +9,8 @@ afterEvaluate {
         publications {
             create<MavenPublication>("release") {
                 from(components["release"])
-                groupId = "com.github.,mille198"
-                artifactId = "AudioVisualizer"
+                groupId = "com.github.miller198"
+                artifactId = "ComposeCircleAudioVisualizer"
                 version = "1.0.0"
             }
         }
