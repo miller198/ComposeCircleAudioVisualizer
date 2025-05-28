@@ -31,7 +31,7 @@ internal fun CircleAlbumCover(
     ) {
         CircleVisualizer(
             audioSessionId = audioSessionId,
-            soundEffects = SoundEffects.BAR,
+            soundEffects = SoundEffects.WAVE_FILL,
             visualizerConfig = VisualizerConfig.FftCaptureConfig.Default,
             gradientConfig = GradientConfig.Default,
             color = audioEffectColor,

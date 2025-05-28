@@ -22,16 +22,16 @@ enum class SoundEffects(
 
     /** A vertical bar graph representation of the audio data. */
     BAR({ audioData, color, modifier ->
-        DrawSoundBar(audioData, color, modifier)
+        SoundEffectBar(audioData, color, modifier)
     }),
 
     /** A waveform rendered using stroke (outline only). */
     WAVE_STROKE({ audioData, color, modifier ->
-        DrawSoundWaveStroke(audioData, color, modifier)
+        SoundEffectWaveStroke(audioData, color, modifier)
     }),
 
     /** A waveform rendered as a filled shape. */
     WAVE_FILL({ audioData, color, modifier ->
-        DrawSoundWaveFill(audioData, color, modifier)
+        SoundEffectWaveFill(audioData, color, modifier)
     })
 }

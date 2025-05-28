@@ -14,7 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
 import com.miller198.audiovisualizer.BaseVisualizer
 import com.miller198.audiovisualizer.configs.VisualizerConfig
-import com.miller198.audiovisualizer.soundeffect.DrawSoundEffectConfigs
+import com.miller198.audiovisualizer.soundeffect.SoundEffectConfigs
 import com.miller198.audiovisualizer.configs.GradientConfig
 import com.miller198.audiovisualizer.configs.ClippingRadiusConfig
 import com.miller198.audiovisualizer.configs.VisualizerCallbacks
@@ -52,8 +52,8 @@ fun CircleVisualizer(
     val visualizer = remember { BaseVisualizer() }
 
     // Set global visual configuration (used in other rendering composable functions)
-    DrawSoundEffectConfigs.gradientConfig = gradientConfig
-    DrawSoundEffectConfigs.clippingRadiusConfig = clippingRadiusConfig
+    SoundEffectConfigs.gradientConfig = gradientConfig
+    SoundEffectConfigs.clippingRadiusConfig = clippingRadiusConfig
 
     // Start the visualizer when the composable is composed with the given audio session ID
     LaunchedEffect(audioSessionId) {

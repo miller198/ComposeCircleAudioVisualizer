@@ -14,7 +14,7 @@ import kotlin.math.min
 /**
  * Configuration and utility object for controlling the sound effect drawing behavior.
  */
-object DrawSoundEffectConfigs {
+object SoundEffectConfigs {
 
     /** Ratio used to calculate the gradient radius relative to the maximum effect radius. */
     const val GRADIENT_RADIUS_RATIO = 0.8f
