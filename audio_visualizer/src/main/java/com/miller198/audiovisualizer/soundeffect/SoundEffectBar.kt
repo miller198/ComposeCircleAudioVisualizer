@@ -12,10 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onSizeChanged
-import com.miller198.audiovisualizer.soundeffect.DrawSoundEffectConfigs.GRADIENT_RADIUS_RATIO
-import com.miller198.audiovisualizer.soundeffect.DrawSoundEffectConfigs.animatedGradientRadius
-import com.miller198.audiovisualizer.soundeffect.DrawSoundEffectConfigs.gradientConfig
-import com.miller198.audiovisualizer.soundeffect.DrawSoundEffectConfigs.onCanvasSizeChanged
+import com.miller198.audiovisualizer.soundeffect.SoundEffectConfigs.GRADIENT_RADIUS_RATIO
+import com.miller198.audiovisualizer.soundeffect.SoundEffectConfigs.animatedGradientRadius
+import com.miller198.audiovisualizer.soundeffect.SoundEffectConfigs.gradientConfig
+import com.miller198.audiovisualizer.soundeffect.SoundEffectConfigs.onCanvasSizeChanged
 
 /**
  * Composable function that draws a radial sound bar visualizer effect.
@@ -28,7 +28,7 @@ import com.miller198.audiovisualizer.soundeffect.DrawSoundEffectConfigs.onCanvas
  * @param modifier Modifier to apply to the Canvas layout.
  */
 @Composable
-internal fun DrawSoundBar(
+internal fun SoundEffectBar(
     audioData: List<Float>,
     color: Color,
     modifier: Modifier = Modifier,
