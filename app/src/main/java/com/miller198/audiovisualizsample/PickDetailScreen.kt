@@ -51,6 +51,10 @@ fun PickDetailScreen(
         playerViewModel.readyPlayer(context, audioUri)
     }
 
+    LaunchedEffect(playerUiState.value) {
+        Log.d("PlayerViewModel", "playerUiState: ${playerUiState.value}")
+    }
+
     PickDetailContents(
         playerUiState = playerUiState.value,
         mainColor = mainColor,
@@ -131,7 +135,7 @@ private fun PickDetailContents(
                 ) {
                     if(audioSessionId != 0) {
                         CircleAlbumCover(
-                            audioEffectColor = Color.Magenta,
+                            audioEffectColor = audioEffectColor,
                             audioSessionId = audioSessionId,
                             modifier = Modifier
                                 .size(360.dp)
