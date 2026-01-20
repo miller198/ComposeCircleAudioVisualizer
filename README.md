@@ -8,7 +8,7 @@ A Jetpack Compose library for creating beautiful circular audio visualizations i
 ## Features
 
 - **Circular Audio Visualization**: Display audio data in a circular format
-- **Multiple Sound Effects**: BAR, WAVE_STROKE, WAVE_FILL visualizations
+- **Multiple Sound Effects**: Bar, WaveStroke, WaveFill visualizations (sealed interface)
 - **FFT & Waveform Support**: Process both frequency domain (FFT) and time domain (Waveform) data
 - **Gradient Animation**: Optional animated gradient effects
 - **Customizable Clipping Radius**: Control the inner radius of the visualization
@@ -62,7 +62,7 @@ The main entry point is the `CircleVisualizer` composable:
 @Composable
 fun CircleVisualizer(
     audioSessionId: Int,
-    soundEffects: SoundEffects,
+    soundEffects: SoundEffect,
     visualizerConfig: VisualizerConfig,
     modifier: Modifier = Modifier,
     color: Color = White,
@@ -79,7 +79,7 @@ val audioSessionId = mediaPlayer.audioSessionId
 
 CircleVisualizer(
     audioSessionId = audioSessionId,
-    soundEffects = SoundEffects.BAR,
+    soundEffects = SoundEffect.Bar,
     visualizerConfig = VisualizerConfig.FftCaptureConfig.Default,
     modifier = Modifier.size(300.dp),
     color = Color.Cyan
@@ -90,14 +90,14 @@ CircleVisualizer(
 
 ## Sound Effects
 
-The library provides four types of sound visualization effects:
+The library provides four types of sound visualization effects through a sealed interface:
 
 | Effect | Description |
 |--------|-------------|
-| `SoundEffects.NONE` | No visualization |
-| `SoundEffects.BAR` | Radial bar graph extending from center |
-| `SoundEffects.WAVE_STROKE` | Smooth waveform outline using Catmull-Rom splines |
-| `SoundEffects.WAVE_FILL` | Filled smooth waveform shape |
+| `SoundEffect.None` | No visualization |
+| `SoundEffect.Bar` | Radial bar graph extending from center |
+| `SoundEffect.WaveStroke` | Smooth waveform outline using Catmull-Rom splines |
+| `SoundEffect.WaveFill` | Filled smooth waveform shape |
 
 ### Example
 
@@ -105,14 +105,14 @@ The library provides four types of sound visualization effects:
 // Bar visualization
 CircleVisualizer(
     audioSessionId = audioSessionId,
-    soundEffects = SoundEffects.BAR,
+    soundEffects = SoundEffect.Bar,
     visualizerConfig = VisualizerConfig.FftCaptureConfig.Default,
 )
 
 // Filled wave visualization
 CircleVisualizer(
     audioSessionId = audioSessionId,
-    soundEffects = SoundEffects.WAVE_FILL,
+    soundEffects = SoundEffect.WaveFill,
     visualizerConfig = VisualizerConfig.WaveCaptureConfig.Default,
 )
 ```
@@ -217,7 +217,7 @@ Control the inner radius of the circular visualization:
 // Use ratio-based clipping
 CircleVisualizer(
     audioSessionId = audioSessionId,
-    soundEffects = SoundEffects.WAVE_FILL,
+    soundEffects = SoundEffect.WaveFill,
     visualizerConfig = VisualizerConfig.FftCaptureConfig.Default,
     clippingRadiusConfig = ClippingRadiusConfig.Ratio(0.5f)
 )
@@ -225,7 +225,7 @@ CircleVisualizer(
 // Use fixed dp clipping
 CircleVisualizer(
     audioSessionId = audioSessionId,
-    soundEffects = SoundEffects.BAR,
+    soundEffects = SoundEffect.Bar,
     visualizerConfig = VisualizerConfig.FftCaptureConfig.Default,
     clippingRadiusConfig = ClippingRadiusConfig.Fixed(100.dp)
 )
@@ -312,7 +312,7 @@ fun AudioPlayerWithVisualizer(
         // Visualizer around the album art
         CircleVisualizer(
             audioSessionId = audioSessionId,
-            soundEffects = SoundEffects.WAVE_FILL,
+            soundEffects = SoundEffect.WaveFill,
             visualizerConfig = VisualizerConfig.FftCaptureConfig(
                 minFrequency = 60,
                 maxFrequency = 8000,
@@ -347,7 +347,7 @@ fun AudioPlayerWithVisualizer(
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `audioSessionId` | `Int` | Required | Audio session ID from MediaPlayer/ExoPlayer |
-| `soundEffects` | `SoundEffects` | Required | Visualization effect type |
+| `soundEffects` | `SoundEffect` | Required | Visualization effect type |
 | `visualizerConfig` | `VisualizerConfig` | Required | Audio capture configuration |
 | `modifier` | `Modifier` | `Modifier` | Layout modifier |
 | `color` | `Color` | `White` | Primary visualization color |
