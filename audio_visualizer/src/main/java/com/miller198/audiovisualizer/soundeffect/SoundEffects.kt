@@ -3,35 +3,53 @@ package com.miller198.audiovisualizer.soundeffect
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-
 /**
- * Enum representing different sound visualization effects.
- * Each effect defines a Composable function that draws the audio data using a specific visual style.
- *
- * @property drawEffect A Composable lambda that renders the corresponding sound effect.
+ * Sound visualization effects represented as a sealed hierarchy.
+ * This allows each effect to be an independent object or class, offering more flexibility than Enum.
  */
-enum class SoundEffects(
-    val drawEffect: @Composable (
+sealed interface SoundEffect {
+
+    @Composable
+    fun Draw(
         audioData: List<Float>,
         color: Color,
-        modifier: Modifier,
-    ) -> Unit
-) {
-    /** No effect. This does not render any audio visualization. */
-    NONE({ _, _, _ -> }),
+        modifier: Modifier
+    )
 
-    /** A vertical bar graph representation of the audio data. */
-    BAR({ audioData, color, modifier ->
-        SoundEffectBar(audioData, color, modifier)
-    }),
+    /** No effect. Renders nothing. */
+    data object None : SoundEffect {
+        @Composable
+        override fun Draw(audioData: List<Float>, color: Color, modifier: Modifier) {
+            // 빈 공간 (No-op)
+        }
+    }
+
+    /** A vertical bar graph representation. */
+    data object Bar : SoundEffect {
+        @Composable
+        override fun Draw(audioData: List<Float>, color: Color, modifier: Modifier) {
+            SoundEffectBar(audioData, color, modifier)
+        }
+    }
 
     /** A waveform rendered using stroke (outline only). */
-    WAVE_STROKE({ audioData, color, modifier ->
-        SoundEffectWaveStroke(audioData, color, modifier)
-    }),
+    data object WaveStroke : SoundEffect {
+        @Composable
+        override fun Draw(audioData: List<Float>, color: Color, modifier: Modifier) {
+            SoundEffectWaveStroke(audioData, color, modifier)
+        }
+    }
 
     /** A waveform rendered as a filled shape. */
-    WAVE_FILL({ audioData, color, modifier ->
-        SoundEffectWaveFill(audioData, color, modifier)
-    })
+    data object WaveFill : SoundEffect {
+        @Composable
+        override fun Draw(audioData: List<Float>, color: Color, modifier: Modifier) {
+            SoundEffectWaveFill(audioData, color, modifier)
+        }
+    }
+
+    // UI에서 선택지(목록)로 보여줄 때 사용하기 위해 모아둔 리스트
+    companion object {
+        val entries = listOf(None, Bar, WaveStroke, WaveFill)
+    }
 }

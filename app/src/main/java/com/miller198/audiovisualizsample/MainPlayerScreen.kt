@@ -1,7 +1,6 @@
 package com.miller198.audiovisualizsample
 
 import android.net.Uri
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -37,7 +36,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.miller198.audiovisualizsample.playerUi.MusicPlayer
 
 @Composable
-fun PickDetailScreen(
+fun MainPlayerScreen(
     audioUri: Uri,
 ) {
     val context = LocalContext.current
