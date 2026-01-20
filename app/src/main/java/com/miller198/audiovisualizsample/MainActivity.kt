@@ -2,7 +2,6 @@ package com.miller198.audiovisualizsample
 
 import android.Manifest.permission.RECORD_AUDIO
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -10,6 +9,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import com.miller198.audiovisualizsample.ui.theme.ComposeSoundVisualizerProjectTheme
 
 class MainActivity : ComponentActivity() {
@@ -32,8 +32,8 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             ComposeSoundVisualizerProjectTheme {
-                PickDetailScreen(
-                    audioUri = Uri.parse("rawresource://${packageName}/${R.raw.sample_1}"),
+                MainPlayerScreen(
+                    audioUri = "rawresource://${packageName}/${R.raw.sample_1}".toUri(),
                 )
             }
         }

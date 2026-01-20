@@ -30,7 +30,7 @@ class PlayerViewModel() : ViewModel() {
 
     @OptIn(UnstableApi::class)
     private fun initializePlayer(context: Context) {
-        val exoPlayer = ExoPlayer.Builder(context).build().also {
+        ExoPlayer.Builder(context).build().also {
             it.addListener(object : Player.Listener {
                 override fun onPlayerError(error: PlaybackException) {
                     handleError(error)

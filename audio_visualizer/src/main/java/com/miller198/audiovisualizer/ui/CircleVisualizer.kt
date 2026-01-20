@@ -13,12 +13,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
 import com.miller198.audiovisualizer.BaseVisualizer
-import com.miller198.audiovisualizer.configs.VisualizerConfig
-import com.miller198.audiovisualizer.soundeffect.SoundEffectConfigs
-import com.miller198.audiovisualizer.configs.GradientConfig
 import com.miller198.audiovisualizer.configs.ClippingRadiusConfig
+import com.miller198.audiovisualizer.configs.GradientConfig
 import com.miller198.audiovisualizer.configs.VisualizerCallbacks
-import com.miller198.audiovisualizer.soundeffect.SoundEffects
+import com.miller198.audiovisualizer.configs.VisualizerConfig
+import com.miller198.audiovisualizer.soundeffect.SoundEffect
+import com.miller198.audiovisualizer.soundeffect.SoundEffectConfigs
 import kotlinx.coroutines.launch
 
 /**
@@ -36,7 +36,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun CircleVisualizer(
     audioSessionId: Int,
-    soundEffects: SoundEffects,
+    soundEffects: SoundEffect,
     visualizerConfig: VisualizerConfig,
     modifier: Modifier = Modifier,
     color: Color = White,
@@ -104,7 +104,7 @@ fun CircleVisualizer(
     }
 
     // Draw the sound effect using the provided drawEffect lambda
-    soundEffects.drawEffect.invoke(
+    soundEffects.Draw(
         animateMagnitudes.value.map { it.value },
         color,
         modifier,
