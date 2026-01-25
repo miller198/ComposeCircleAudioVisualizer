@@ -1,5 +1,8 @@
 # ComposeCircleAudioVisualizer
 
+<img src="https://github.com/user-attachments/assets/41e6c3c1-035d-4391-b460-bd66ff76863d" width="30%" alt="musci">
+
+
 A Jetpack Compose library for creating beautiful circular audio visualizations in Android applications.
 
 ![Min SDK](https://img.shields.io/badge/minSdk-26-green)
