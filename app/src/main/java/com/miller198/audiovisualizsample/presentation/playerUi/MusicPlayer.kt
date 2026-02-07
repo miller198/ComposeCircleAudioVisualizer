@@ -1,4 +1,4 @@
-package com.miller198.audiovisualizsample.playerUi
+package com.miller198.audiovisualizsample.presentation.playerUi
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -10,8 +10,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.miller198.audiovisualizsample.Constants.DEFAULT_PADDING
-import com.miller198.audiovisualizsample.PlayerUiState
+import com.miller198.audiovisualizsample.presentation.screen.player.Constants.DEFAULT_PADDING
+import com.miller198.audiovisualizsample.presentation.PlayerUiState
 
 @Composable
 fun MusicPlayer(

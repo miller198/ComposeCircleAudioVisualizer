@@ -1,4 +1,4 @@
-package com.miller198.audiovisualizsample
+package com.miller198.audiovisualizsample.presentation
 
 import android.Manifest.permission.RECORD_AUDIO
 import android.content.pm.PackageManager
@@ -10,6 +10,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
+import com.miller198.audiovisualizsample.R
+import com.miller198.audiovisualizsample.presentation.screen.player.MainPlayerScreen
 import com.miller198.audiovisualizsample.ui.theme.ComposeSoundVisualizerProjectTheme
 
 class MainActivity : ComponentActivity() {

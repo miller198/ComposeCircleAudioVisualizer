@@ -1,4 +1,4 @@
-package com.miller198.audiovisualizsample
+package com.miller198.audiovisualizsample.presentation.screen.player
 
 import android.content.Context
 import android.net.Uri
@@ -11,8 +11,7 @@ import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
-import com.miller198.audiovisualizsample.PlayerUiState.Companion.PLAYER_STATE_INITIAL
-import com.miller198.audiovisualizsample.PlayerUiState.Companion.PLAYER_STATE_STOP
+import com.miller198.audiovisualizsample.presentation.PlayerUiState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,7 +24,7 @@ class PlayerViewModel() : ViewModel() {
     private var _audioSessionId = MutableStateFlow<Int>(0)
     val audioSessionId = _audioSessionId.asStateFlow()
 
-    private val _playerState = MutableStateFlow(PLAYER_STATE_INITIAL)
+    private val _playerState = MutableStateFlow(PlayerUiState.Companion.PLAYER_STATE_INITIAL)
     val playerUiState = _playerState.asStateFlow()
 
     @OptIn(UnstableApi::class)
@@ -134,7 +133,7 @@ class PlayerViewModel() : ViewModel() {
     fun stop() {
         player?.let {
             viewModelScope.launch {
-                _playerState.value = PLAYER_STATE_STOP
+                _playerState.value = PlayerUiState.Companion.PLAYER_STATE_STOP
             }
             it.stop()
         }

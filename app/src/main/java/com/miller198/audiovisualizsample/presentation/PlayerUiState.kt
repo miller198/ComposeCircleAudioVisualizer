@@ -1,4 +1,4 @@
-package com.miller198.audiovisualizsample
+package com.miller198.audiovisualizsample.presentation
 
 data class PlayerUiState(
     val isReady: Boolean = true,
