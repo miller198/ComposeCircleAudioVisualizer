@@ -1,7 +1,9 @@
 # ComposeCircleAudioVisualizer
 
-<img src="https://github.com/user-attachments/assets/41e6c3c1-035d-4391-b460-bd66ff76863d" width="30%" alt="musci">
 
+| BAR | STROKE | WAVE | SETTING |
+| :---: | :---: | :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/113acd35-04eb-41ad-aa28-f8aa9dc2c77e" width="250"> | <img src="https://github.com/user-attachments/assets/756f4039-8196-4a10-96a1-69da3c24b194" width="250"> | <img src="https://github.com/user-attachments/assets/4f3ec3d7-b949-4c2e-afd8-fa5089780b13" width="250"> | <img src="https://github.com/user-attachments/assets/57d2aa3f-13ee-4192-81e1-2200d118dfc6" width="500"> |
 
 A Jetpack Compose library for creating beautiful circular audio visualizations in Android applications.
 
