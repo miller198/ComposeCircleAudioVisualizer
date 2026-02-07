@@ -1,4 +1,4 @@
-package com.miller198.audiovisualizsample
+package com.miller198.audiovisualizsample.presentation.screen.player
 
 import androidx.compose.ui.unit.dp
 

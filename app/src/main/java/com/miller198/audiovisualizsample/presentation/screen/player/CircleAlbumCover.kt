@@ -1,4 +1,4 @@
-package com.miller198.audiovisualizsample
+package com.miller198.audiovisualizsample.presentation.screen.player
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -18,9 +18,11 @@ import com.miller198.audiovisualizer.configs.GradientConfig
 import com.miller198.audiovisualizer.configs.VisualizerConfig
 import com.miller198.audiovisualizer.soundeffect.SoundEffect
 import com.miller198.audiovisualizer.ui.CircleVisualizer
+import com.miller198.audiovisualizsample.R
 
 @Composable
 internal fun CircleAlbumCover(
+    soundEffect: SoundEffect,
     audioEffectColor: Color,
     audioSessionId: Int,
     modifier: Modifier = Modifier,
@@ -30,7 +32,7 @@ internal fun CircleAlbumCover(
     ) {
         CircleVisualizer(
             audioSessionId = audioSessionId,
-            soundEffects = SoundEffect.Bar,
+            soundEffects = soundEffect,
             visualizerConfig = VisualizerConfig.FftCaptureConfig.Default,
             gradientConfig = GradientConfig.Default,
             color = audioEffectColor,

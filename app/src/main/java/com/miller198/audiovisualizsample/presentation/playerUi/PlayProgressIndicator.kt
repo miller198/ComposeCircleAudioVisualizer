@@ -1,4 +1,4 @@
-package com.miller198.audiovisualizsample.playerUi
+package com.miller198.audiovisualizsample.presentation.playerUi
 
 import android.util.Log
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -32,7 +32,7 @@ internal fun PlayProgressIndicator(
             progress = { bufferPercentage / 100f },
             modifier = Modifier.fillMaxWidth(),
             color = DarkGray,
-            trackColor = Color.DarkGray,
+            trackColor = DarkGray,
             strokeCap = StrokeCap.Butt,
         )
 

@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">ComposeSoundVisualizerProject</string>
+
+    <!--SoundEffect-->
+    <string name="sound_effect_none">NONE</string>
+    <string name="sound_effect_bar">BAR</string>
+    <string name="sound_effect_wave_fill">WAVE</string>
+    <string name="sound_effect_wave_stroke">STROKE</string>
+    <string name="setting_title">SETTING</string>
 </resources>

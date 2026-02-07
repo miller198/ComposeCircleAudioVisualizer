@@ -1,4 +1,4 @@
-package com.miller198.audiovisualizsample.playerUi
+package com.miller198.audiovisualizsample.presentation.playerUi
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
