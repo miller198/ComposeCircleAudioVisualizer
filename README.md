@@ -43,7 +43,7 @@ Add it in your module `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("com.github.miller198:ComposeCircleAudioVisualizer:1.0.0")
+    implementation("com.github.miller198:ComposeCircleAudioVisualizer:1.0.2")
 }
 ```
 
