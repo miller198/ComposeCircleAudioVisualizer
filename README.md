@@ -1,5 +1,7 @@
 # ComposeCircleAudioVisualizer
 
+> For Koreans: 세부 구현 과정이 궁금하시면 방문해주세요. https://velog.io/@miller198/series/AudioVisualize
+
 
 | BAR | STROKE | WAVE |
 | :---: | :---: | :---: |
