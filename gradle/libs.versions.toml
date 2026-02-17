@@ -1,5 +1,6 @@
 [versions]
 libraryVersion = "1.1.0"
+composecircleaudiovisualizer = "1.1.0"
 agp = "8.13.0"
 kotlin = "2.0.21"
 coreKtx = "1.13.1"
@@ -20,6 +21,7 @@ vanniktechMavenPublish = "0.36.0"
 media3Ui = "1.5.1"
 
 [libraries]
+composecircleaudiovisualizer = { module = "io.github.miller198:ComposeCircleAudioVisualizer", version.ref = "composecircleaudiovisualizer" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

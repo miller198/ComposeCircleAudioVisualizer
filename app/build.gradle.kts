@@ -37,8 +37,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":audio_visualizer"))
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -62,4 +60,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.inject)
+
+    implementation(libs.composecircleaudiovisualizer)
 }
