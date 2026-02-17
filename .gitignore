@@ -14,5 +14,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+gradle.properties
 secring.gpg
 *~
