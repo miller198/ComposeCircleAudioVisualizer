@@ -35,7 +35,7 @@ class BaseVisualizer {
 
         // Validate capture size and fallback to max size if needed
         visualizer?.captureSize =
-            if (!isPowerOfTwo(captureSize) || !isValidCaptureSize(captureSize)) {
+            if (!captureSize.isPowerOfTwo() || !captureSize.isValidCaptureSize()) {
                 Visualizer.getCaptureSizeRange()[1].also {
                     Log.w("BaseVisualizer", "Invalid capture size, fallback to max: $it")
                 }
@@ -99,15 +99,15 @@ class BaseVisualizer {
     /**
      * Checks whether the provided [captureSize] is a power of two.
      */
-    private fun isPowerOfTwo(captureSize: Int): Boolean {
-        return captureSize > 0 && (captureSize and (captureSize - 1)) == 0
+    private fun Int.isPowerOfTwo(): Boolean {
+        return this > 0 && (this and (this - 1)) == 0
     }
 
     /**
      * Checks whether the provided [captureSize] is within the valid range supported by [Visualizer].
      */
-    private fun isValidCaptureSize(captureSize: Int): Boolean {
+    private fun Int.isValidCaptureSize(): Boolean {
         val range = Visualizer.getCaptureSizeRange()
-        return captureSize in range[0]..range[1]
+        return this in range[0]..range[1]
     }
 }
