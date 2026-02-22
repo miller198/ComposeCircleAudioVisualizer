@@ -48,7 +48,6 @@ sealed interface SoundEffect {
         }
     }
 
-    // UI에서 선택지(목록)로 보여줄 때 사용하기 위해 모아둔 리스트
     companion object {
         val entries = listOf(None, Bar, WaveStroke, WaveFill)
     }

@@ -1,4 +1,4 @@
-package com.miller198.audiovisualizer
+package com.miller198.audiovisualizer.processor
 
 import android.media.audiofx.Visualizer
 import kotlin.math.abs
@@ -128,7 +128,7 @@ class WaveDataProcessor(rawWaveBytes: ByteArray) {
      *
      * @return A list of processed Float values.
      */
-    fun result(): List<Float> = processedData
+    fun build(): List<Float> = processedData
 }
 
 /**
@@ -145,4 +145,4 @@ fun defaultPreProcessWaveData(rawWaveBytes: ByteArray): List<Float> =
         .averagePool(5)
         .normalizeByZScore()
         .normalize()
-        .result()
+        .build()

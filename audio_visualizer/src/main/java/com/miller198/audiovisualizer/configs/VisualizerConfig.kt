@@ -1,8 +1,8 @@
 package com.miller198.audiovisualizer.configs
 
 import android.media.audiofx.Visualizer
-import com.miller198.audiovisualizer.defaultPreProcessFftData
-import com.miller198.audiovisualizer.defaultPreProcessWaveData
+import com.miller198.audiovisualizer.processor.defaultPreProcessFftData
+import com.miller198.audiovisualizer.processor.defaultPreProcessWaveData
 
 /**
  * Interface for configuring the audio visualizer.

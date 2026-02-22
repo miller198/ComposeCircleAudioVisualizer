@@ -1,4 +1,4 @@
-package com.miller198.audiovisualizer
+package com.miller198.audiovisualizer.processor
 
 import android.media.audiofx.Visualizer
 import kotlin.math.hypot
@@ -189,7 +189,7 @@ class FftDataProcessor(rawFftBytes: ByteArray) {
      *
      * @return A list of processed Float values.
      */
-    fun result(): List<Float> = processedData
+    fun build(): List<Float> = processedData
 }
 
 /**
@@ -219,5 +219,5 @@ fun defaultPreProcessFftData(
         .applyLogScale()
         .normalizeByZScore()
         .normalize()
-        .result()
+        .build()
 }
