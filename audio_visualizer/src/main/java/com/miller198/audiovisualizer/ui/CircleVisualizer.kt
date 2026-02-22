@@ -7,6 +7,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -17,8 +18,9 @@ import com.miller198.audiovisualizer.configs.ClippingRadiusConfig
 import com.miller198.audiovisualizer.configs.GradientConfig
 import com.miller198.audiovisualizer.configs.VisualizerCallbacks
 import com.miller198.audiovisualizer.configs.VisualizerConfig
+import com.miller198.audiovisualizer.soundeffect.LocalClippingRadiusConfig
+import com.miller198.audiovisualizer.soundeffect.LocalGradientConfig
 import com.miller198.audiovisualizer.soundeffect.SoundEffect
-import com.miller198.audiovisualizer.soundeffect.SoundEffectConfigs
 import kotlinx.coroutines.launch
 
 /**
@@ -50,10 +52,6 @@ fun CircleVisualizer(
     val animateMagnitudes = remember { mutableStateOf<List<Animatable<Float, AnimationVector1D>>>(emptyList()) }
 
     val visualizer = remember { BaseVisualizer() }
-
-    // Set global visual configuration (used in other rendering composable functions)
-    SoundEffectConfigs.gradientConfig = gradientConfig
-    SoundEffectConfigs.clippingRadiusConfig = clippingRadiusConfig
 
     // Start the visualizer when the composable is composed with the given audio session ID
     LaunchedEffect(audioSessionId) {
@@ -104,9 +102,14 @@ fun CircleVisualizer(
     }
 
     // Draw the sound effect using the provided drawEffect lambda
-    soundEffects.Draw(
-        animateMagnitudes.value.map { it.value },
-        color,
-        modifier,
-    )
+    CompositionLocalProvider(
+        LocalGradientConfig provides gradientConfig,
+        LocalClippingRadiusConfig provides clippingRadiusConfig
+    ) {
+        soundEffects.Draw(
+            animateMagnitudes.value.map { it.value },
+            color,
+            modifier,
+        )
+    }
 }

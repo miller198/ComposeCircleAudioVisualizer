@@ -13,8 +13,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onSizeChanged
 import com.miller198.audiovisualizer.soundeffect.SoundEffectConfigs.GRADIENT_RADIUS_RATIO
-import com.miller198.audiovisualizer.soundeffect.SoundEffectConfigs.animatedGradientRadius
-import com.miller198.audiovisualizer.soundeffect.SoundEffectConfigs.gradientConfig
 import com.miller198.audiovisualizer.soundeffect.SoundEffectConfigs.onCanvasSizeChanged
 
 /**
@@ -33,6 +31,9 @@ internal fun SoundEffectBar(
     color: Color,
     modifier: Modifier = Modifier,
 ) {
+    val gradientConfig = LocalGradientConfig.current
+    val clippingRadiusConfig = LocalClippingRadiusConfig.current
+
     /** The radius from the center to the start of the bars */
     var adjustedRadius by remember { mutableFloatStateOf(0f) }
 
@@ -40,7 +41,7 @@ internal fun SoundEffectBar(
     var maxEffectHeight by remember { mutableFloatStateOf(0f) }
 
     /** Animated gradient radius for dynamic glow effects */
-    val animatedGradientRadius = animatedGradientRadius(LinearEasing)
+    val animatedGradientRadius = SoundEffectConfigs.animatedGradientRadius(gradientConfig, LinearEasing)
 
     /** Angle between each bar in the 360° circle */
     val angleStep = 360f / audioData.size
@@ -54,6 +55,7 @@ internal fun SoundEffectBar(
                 onCanvasSizeChanged(
                     width = canvasSize.width,
                     height = canvasSize.height,
+                    clippingRadiusConfig = clippingRadiusConfig,
                     onRadiusCalculated = { adjustedRadius = it },
                     onMaxEffectHeightCalculated = { maxEffectHeight = it }
                 )

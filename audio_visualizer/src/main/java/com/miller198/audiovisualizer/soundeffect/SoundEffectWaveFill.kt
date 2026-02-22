@@ -18,8 +18,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.layout.onSizeChanged
-import com.miller198.audiovisualizer.soundeffect.SoundEffectConfigs.animatedGradientRadius
-import com.miller198.audiovisualizer.soundeffect.SoundEffectConfigs.gradientConfig
 import com.miller198.audiovisualizer.soundeffect.SoundEffectConfigs.onCanvasSizeChanged
 
 /**
@@ -37,6 +35,9 @@ internal fun SoundEffectWaveFill(
     color: Color,
     modifier: Modifier = Modifier,
 ) {
+    val gradientConfig = LocalGradientConfig.current
+    val clippingRadiusConfig = LocalClippingRadiusConfig.current
+
     /** The radius from the center to the start of the bars */
     var adjustedRadius by remember { mutableFloatStateOf(0f) }
 
@@ -53,7 +54,7 @@ internal fun SoundEffectWaveFill(
     val path = Path()
 
     /** Animated gradient radius for visual effect */
-    val animatedGradientRadius = animatedGradientRadius(LinearOutSlowInEasing)
+    val animatedGradientRadius = SoundEffectConfigs.animatedGradientRadius(gradientConfig, LinearOutSlowInEasing)
 
     /** Main canvas for drawing the sound wave */
     Canvas(
@@ -64,6 +65,7 @@ internal fun SoundEffectWaveFill(
                 onCanvasSizeChanged(
                     width = canvasSize.width,
                     height = canvasSize.height,
+                    clippingRadiusConfig = clippingRadiusConfig,
                     onRadiusCalculated = { adjustedRadius = it },
                     onMaxEffectHeightCalculated = { maxEffectHeight = it }
                 )

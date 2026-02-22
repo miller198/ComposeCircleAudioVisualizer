@@ -29,6 +29,8 @@ internal fun SoundEffectWaveStroke(
     color: Color,
     modifier: Modifier = Modifier,
 ) {
+    val clippingRadiusConfig = LocalClippingRadiusConfig.current
+
     /** The radius from the center to the start of the bars */
     var adjustedRadius by remember { mutableFloatStateOf(0f) }
 
@@ -50,6 +52,7 @@ internal fun SoundEffectWaveStroke(
                 onCanvasSizeChanged(
                     width = canvasSize.width,
                     height = canvasSize.height,
+                    clippingRadiusConfig = clippingRadiusConfig,
                     onRadiusCalculated = { adjustedRadius = it },
                     onMaxEffectHeightCalculated = { maxEffectHeight = it }
                 )

@@ -7,9 +7,20 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.compositionLocalOf
 import com.miller198.audiovisualizer.configs.ClippingRadiusConfig
 import com.miller198.audiovisualizer.configs.GradientConfig
 import kotlin.math.min
+
+/**
+ * CompositionLocal for providing [GradientConfig] to sound effect composables.
+ */
+val LocalGradientConfig = compositionLocalOf<GradientConfig> { GradientConfig.Default }
+
+/**
+ * CompositionLocal for providing [ClippingRadiusConfig] to sound effect composables.
+ */
+val LocalClippingRadiusConfig = compositionLocalOf<ClippingRadiusConfig> { ClippingRadiusConfig.FullClip }
 
 /**
  * Configuration and utility object for controlling the sound effect drawing behavior.
@@ -22,24 +33,17 @@ object SoundEffectConfigs {
     /** Divisor used to determine the maximum height of the visual wave effect. */
     private const val EFFECT_HEIGHT_DIVISOR = 5f
 
-    /** Current gradient configuration. Default is [GradientConfig.Default] */
-    internal var gradientConfig: GradientConfig = GradientConfig.Default
-
-    /**
-     * Current clipping radius configuration. Controls the inner radius of the sound wave.
-     * Default is [ClippingRadiusConfig.FullClip]
-     */
-    internal var clippingRadiusConfig: ClippingRadiusConfig = ClippingRadiusConfig.FullClip
-
     /**
      * Animated radius value for a radial gradient brush.
-     * Only animates if [GradientConfig.useGradient] of [gradientConfig] is true.
+     * Only animates if [GradientConfig.useGradient] is true.
      *
+     * @param gradientConfig The gradient configuration to use.
      * @param easing Easing function used in the animation.
      * @return Current animated radius value.
      */
-    val animatedGradientRadius: @Composable (Easing) -> Float = { easing ->
-        if (gradientConfig.useGradient) {
+    @Composable
+    fun animatedGradientRadius(gradientConfig: GradientConfig, easing: Easing): Float {
+        return if (gradientConfig.useGradient) {
             val transition = rememberInfiniteTransition(label = "GradientRadiusTransition")
             transition.animateFloat(
                 initialValue = 0.01f,
@@ -60,25 +64,22 @@ object SoundEffectConfigs {
      *
      * @param width New width of the canvas.
      * @param height New height of the canvas.
+     * @param clippingRadiusConfig Configuration for calculating the clipping radius.
      * @param onRadiusCalculated Callback to provide the computed inner radius.
      * @param onMaxEffectHeightCalculated Callback to provide the computed max wave height.
      */
     internal fun onCanvasSizeChanged(
         width: Int,
         height: Int,
+        clippingRadiusConfig: ClippingRadiusConfig,
         onRadiusCalculated: (Float) -> Unit,
         onMaxEffectHeightCalculated: (Float) -> Unit
     ) {
-        val clippingRadius = clippingRadiusConfig.dp.value
-        val clippingRadiusRatio = clippingRadiusConfig.ratio
+        val canvasSize = min(width, height)
 
-        onRadiusCalculated(
-            if (clippingRadius > 0f) clippingRadius else (min(width, height) / 2) * clippingRadiusRatio
-        )
+        onRadiusCalculated(clippingRadiusConfig.calculateRadius(canvasSize))
 
-        onMaxEffectHeightCalculated(
-            min(width, height) / EFFECT_HEIGHT_DIVISOR
-        )
+        onMaxEffectHeightCalculated(canvasSize / EFFECT_HEIGHT_DIVISOR)
     }
 }
 
