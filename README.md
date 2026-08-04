@@ -179,7 +179,7 @@ val customConfig = VisualizerConfig.Custom(
         WaveDataProcessor(bytes)
             .downSample(64)
             .normalize()
-            .result()
+            .build()
     },
     processFftData = null
 )
@@ -260,7 +260,7 @@ val processedData = FftDataProcessor(rawFftBytes)
     .compressDynamicRangeRoot()
     .normalizeByZScore()
     .normalize()
-    .result()
+    .build()
 ```
 
 #### Available Methods
@@ -285,7 +285,7 @@ val processedData = WaveDataProcessor(rawWaveBytes)
     .averagePool(2)           // Average pooling with block size 2
     .normalizeByZScore()
     .normalize()
-    .result()
+    .build()
 ```
 
 #### Available Methods
@@ -332,7 +332,7 @@ fun AudioPlayerWithVisualizer(
                         .applyLogScale()
                         .normalizeByZScore()
                         .normalize()
-                        .result()
+                        .build()
                 }
             ),
             modifier = Modifier.size(300.dp),
