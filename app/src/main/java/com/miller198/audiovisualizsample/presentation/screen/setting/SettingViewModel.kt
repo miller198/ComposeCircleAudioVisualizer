@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.miller198.audiovisualizsample.MyApplication
+import com.miller198.audiovisualizsample.SampleApplication
 import com.miller198.audiovisualizsample.domain.PlayerPreference
 import com.miller198.audiovisualizsample.domain.SettingRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +17,7 @@ import javax.inject.Inject
 object SettingViewModelFactory {
     val Factory = viewModelFactory {
         initializer {
-            val app = (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as MyApplication)
+            val app = (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as SampleApplication)
 
             SettingViewModel(app.settingRepository)
         }

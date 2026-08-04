@@ -25,31 +25,15 @@ A Jetpack Compose library for creating beautiful circular audio visualizations i
 
 ## Installation
 
-### Step 1. Add JitPack repository
-
-Add it in your root `settings.gradle.kts`:
-
-```kotlin
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        mavenCentral()
-        maven { url = uri("https://jitpack.io") }
-    }
-}
-```
-
-### Step 2. Add the dependency
-
-Add it in your module `build.gradle.kts`:
+Add the dependency in your module `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("com.github.miller198:ComposeCircleAudioVisualizer:1.0.2")
+    implementation("io.github.miller198:ComposeCircleAudioVisualizer:1.1.0")
 }
 ```
 
-### Step 3. Add RECORD_AUDIO permission
+### Add RECORD_AUDIO permission
 
 Add the following permission to your `AndroidManifest.xml`:
 
@@ -58,6 +42,37 @@ Add the following permission to your `AndroidManifest.xml`:
 ```
 
 > **Note**: You must request this permission at runtime for Android 6.0 (API 23) and above.
+
+---
+
+## 📢 Migration to Maven Central
+
+Since version **1.1.0**, this library is published to **Maven Central**.
+
+> **Note**: Versions 1.0.x are still available on JitPack.
+
+### For existing users (migrating from JitPack)
+
+**1. Remove JitPack repository** from your `settings.gradle.kts`:
+
+```diff
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        mavenCentral()
+-       maven { url = uri("https://jitpack.io") }
+    }
+}
+```
+
+**2. Update the dependency** in your module `build.gradle.kts`:
+
+```diff
+dependencies {
+-   implementation("com.github.miller198:ComposeCircleAudioVisualizer:1.0.2")
++   implementation("io.github.miller198:ComposeCircleAudioVisualizer:1.1.0")
+}
+```
 
 ---
 
